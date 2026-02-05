@@ -29,9 +29,9 @@ spring:
       timeout: 2000
 
   config:
-    - optional:application-oauth.yml
-    - optional:file:.env[.properties] 
-
+    import:
+      - optional:application-oauth.yml
+      - optional:file:.env[.properties] 
 server:
   port: 8484
 
@@ -65,4 +65,3 @@ naver:
   ocr:
     key: ${NAVER_OCR_KEY}
     url: ${NAVER_OCR_URL}	
-	
