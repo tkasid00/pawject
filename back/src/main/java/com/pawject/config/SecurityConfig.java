@@ -81,6 +81,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/users/mypage").authenticated()
                 .requestMatchers("/api/pets/**").authenticated()
                 // 나머지는 모두 허용
+                .requestMatchers(HttpMethod.POST, "/api/users/login").permitAll()
                 .anyRequest().permitAll()
             )
             // Oauth2 로그인은 소셜로그인 전용
@@ -106,7 +107,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
  
-        configuration.setAllowedOriginPatterns(List.of("http://localhost:3000", "http://13.124.236.156"));    //★ Front 포트번호
+        configuration.setAllowedOriginPatterns(List.of("http://localhost:3000", "http://13.236.66.10"));    //★ Front 포트번호
 
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
