@@ -33,7 +33,7 @@ spring:
       - optional:application-oauth.yml
       - optional:file:.env[.properties] 
 server:
-  port: 8484
+  port: 8080
 
 mybatis:
   config-location: classpath:mybatis-config.xml
