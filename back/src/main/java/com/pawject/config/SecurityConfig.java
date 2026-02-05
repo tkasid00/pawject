@@ -77,11 +77,12 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/api/posts/search/hashtag").permitAll()  
                 .requestMatchers("/api/posts/paged").permitAll() 
                 // /api/요청은 JWT 인증 필요
-                .requestMatchers("/api/**").authenticated()
+                
                 .requestMatchers("/api/users/mypage").authenticated()
                 .requestMatchers("/api/pets/**").authenticated()
                 // 나머지는 모두 허용
                 .requestMatchers(HttpMethod.POST, "/api/users/login").permitAll()
+                .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
             )
             // Oauth2 로그인은 소셜로그인 전용
