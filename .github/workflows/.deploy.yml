@@ -50,18 +50,20 @@ jobs:  # 실행할 job 정의
           echo "✅ JAR file found: ${{ env.JAR_FILE }}"
 
       - name: Create Backend .env from Secrets
-        run: |  # secrets 기반으로 .env 파일 생성
-          echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> back/.env
-          echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> back/.env
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> back/.env
-          echo "GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}" >> back/.env
-          echo "GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}" >> back/.env
-          echo "KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}" >> back/.env
-          echo "NAVER_CLIENT_ID=${{ secrets.NAVER_CLIENT_ID }}" >> back/.env
-          echo "NAVER_CLIENT_SECRET=${{ secrets.NAVER_CLIENT_SECRET }}" >> back/.env
-          echo "OPENAI_API_KEY_HJ=${{ secrets.OPENAI_API_KEY_HJ }}" >> back/.env
-          echo "NAVER_OCR_KEY=${{ secrets.NAVER_OCR_KEY }}" >> back/.env
-          echo "NAVER_OCR_URL=${{ secrets.NAVER_OCR_URL }}" >> back/.env     
+        run: |
+          cat <<EOF > back/.env
+          DB_USERNAME=${{ secrets.DB_USERNAME }}
+          DB_PASSWORD=${{ secrets.DB_PASSWORD }}
+          JWT_SECRET=${{ secrets.JWT_SECRET }}
+          GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}
+          KAKAO_CLIENT_ID=${{ secrets.KAKAO_CLIENT_ID }}
+          NAVER_CLIENT_ID=${{ secrets.NAVER_CLIENT_ID }}
+          NAVER_CLIENT_SECRET=${{ secrets.NAVER_CLIENT_SECRET }}
+          OPENAI_API_KEY_HJ=${{ secrets.OPENAI_API_KEY_HJ }}
+          NAVER_OCR_KEY=${{ secrets.NAVER_OCR_KEY }}
+          NAVER_OCR_URL=${{ secrets.NAVER_OCR_URL }}
+          EOF
       - name: Ensure app directory exists on EC2
         uses: appleboy/ssh-action@v0.1.7  # EC2에 접속 후 디렉토리 생성
         with:
