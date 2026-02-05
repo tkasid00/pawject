@@ -63,13 +63,24 @@ public class SecurityConfig {
             	    .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
             	    .requestMatchers(
-            	        "/auth/**", "/login/**", "/oauth2/**",
-            	        "/swagger-ui/**", "/v3/api-docs/**",
-            	        "/swagger-resources/**", "/webjars/**",
-            	        "/configuration/**", "/upload/**", "/api/likes/**",
-            	        "/api/users/signup", "/api/users/login", "/api/users/refresh",
-            	        "/api/test/openai/**"
-            	    ).permitAll()
+            	    	    "/auth/**", "/login/**", "/oauth2/**",
+            	    	    "/swagger-ui/**", "/v3/api-docs/**",
+            	    	    "/swagger-resources/**", "/webjars/**",
+            	    	    "/configuration/**", "/upload/**", "/api/likes/**",
+
+            	    	    "/api/users/signup",
+            	    	    "/api/users/login",
+            	    	    "/api/users/refresh",
+            	    	    "/api/test/openai/**",
+
+            	    	    // ⭐ 공개 게시판 API 추가
+            	    	    "/api/petfoodsearcher/**",
+            	    	    "/api/petdisease/**",
+            	    	    "/api/exec/**",
+            	    	    "/api/tester/**",
+            	    	    "/api/reviewboard/**",
+            	    	    "/api/faqBoard/**"
+            	    	).permitAll()
 
             	    .requestMatchers(HttpMethod.GET, "/api/posts").permitAll()
             	    .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
