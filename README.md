@@ -61,11 +61,19 @@
 ### 🌐 Service Access
 <http://13.236.66.10/>
 
-### 👤 Admin Test Account
+### 👥 Demo Accounts
+
+**관리자 기능 확인**
 ```
 ID : admin@test.com
 PW : admin
 ```
+**일반 사용자 체험**
+```
+ID : user@test.com
+PW : user
+```
+
 ---
 
 ## 🔎 Exploration Guide
