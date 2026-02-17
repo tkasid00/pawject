@@ -23,7 +23,7 @@ export default function AdListPage() {
     message.success("광고가 삭제되었습니다."); // 성공 메시지
   };
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8484";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
   const columns = [
     {

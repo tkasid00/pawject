@@ -191,26 +191,36 @@ export default function AppLayout({ children }) {
       {/* ✅ Content + 좌우 광고 영역 */}
       <Content style={{ padding: "28px 16px" }}>
         <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-          <Row gutter={[16, 16]}>
-            
-            {/* 왼쪽 광고 */}
-            <Col xs={0} md={3} lg={3}>
-              {renderAds()}
-            </Col>
-
-            {/* 중앙 본문 */}
-            <Col xs={24} md={18} lg={18}>
-              {children}
-            </Col>
-
-            {/* 오른쪽 광고 */}
-            <Col xs={0} md={3} lg={3}>
-              {renderAds()}
-            </Col>
-
-          </Row>
+          {children}
         </div>
       </Content>
+        {/* 왼쪽 광고 */}
+        <div
+          style={{
+            position: "fixed",
+            left: 20,
+            top: 120,
+            width: 140,
+            zIndex: 10,
+          }}
+        >
+          {renderAds()}
+        </div>
+
+        {/* 오른쪽 광고 */}
+        <div
+          style={{
+            position: "fixed",
+            right: 20,
+            top: 120,
+            width: 140,
+            zIndex: 10,
+          }}
+        >
+          {renderAds()}
+        </div>
+
+
     </Layout>
   );
 }

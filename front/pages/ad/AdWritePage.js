@@ -38,7 +38,7 @@ const AdWritePage = ({ isEditing = false, currentAd = null, setIsEditing }) => {
 
   // ✅ 최신 광고는 ads[0]이 가장 최근
   const latestAd = ads && ads.length > 0 ? ads[0] : null;
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8484";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
   const imageUrl = latestAd?.imgUrl || (latestAd?.img ? `${API_URL}/upload/${latestAd.img}` : undefined);
 
   return (
