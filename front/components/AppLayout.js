@@ -97,7 +97,7 @@ export default function AppLayout({ children }) {
     return found ? [found.key] : ["/"];
   }, [router.pathname, menuItems]);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8484";
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
 
   // ✅ 광고 카드 렌더링 함수 (중복 제거)
   const renderAds = () => (
