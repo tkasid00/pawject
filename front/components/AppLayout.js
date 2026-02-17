@@ -7,6 +7,7 @@ import { useMemo, useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchLatestAdsRequest } from "../reducers/ad/adReducer";
 import { parseJwt } from "../utils/jwt";
+import { fileUrl } from "../utils/fileUrl";
 
 const { Header, Content } = Layout;
 const { useBreakpoint } = Grid;
@@ -110,7 +111,7 @@ export default function AppLayout({ children }) {
         <Row gutter={[8, 8]}>
           {latestAds.map((ad) => {
             const imageUrl =
-              ad.imgUrl || (ad.img ? `${API_URL}/upload/${ad.img}` : null);
+              ad.imgUrl || (ad.img ? fileUrl(ad.img) : null);
 
             return (
               <Col span={24} key={ad.id}>
@@ -195,6 +196,7 @@ export default function AppLayout({ children }) {
         </div>
       </Content>
         {/* 왼쪽 광고 */}
+      {screens.lg && (
         <div
           style={{
             position: "fixed",
@@ -206,19 +208,22 @@ export default function AppLayout({ children }) {
         >
           {renderAds()}
         </div>
+      )}
 
         {/* 오른쪽 광고 */}
-        <div
-          style={{
-            position: "fixed",
-            right: 20,
-            top: 120,
-            width: 140,
-            zIndex: 10,
-          }}
-        >
-          {renderAds()}
-        </div>
+        {screens.lg && (
+          <div
+            style={{
+              position: "fixed",
+              right: 20,
+              top: 120,
+              width: 140,
+              zIndex: 10,
+            }}
+          >
+            {renderAds()}
+          </div>
+        )}
 
 
     </Layout>
