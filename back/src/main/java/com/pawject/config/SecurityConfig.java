@@ -82,14 +82,16 @@ public class SecurityConfig {
             	    	    "/api/faqBoard/**"
             	    	).permitAll()
 
-            	    .requestMatchers(HttpMethod.GET, "/api/posts").permitAll()
-            	    .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
-            	    .requestMatchers(HttpMethod.GET, "/api/posts/search/hashtag").permitAll()
-            	    .requestMatchers("/api/posts/paged").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/ads/**").permitAll()
 
-            	    .requestMatchers("/api/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/posts").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/posts/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/posts/search/hashtag").permitAll()
+                        .requestMatchers("/api/posts/paged").permitAll()
 
-            	    .anyRequest().permitAll()
+                        .requestMatchers("/api/**").authenticated()
+
+                        .anyRequest().permitAll()
             	)
 
             // Oauth2 로그인은 소셜로그인 전용
