@@ -236,7 +236,7 @@ public class UserService {
                 .provider(provider)
                 .providerId(providerId)
                 .nickname(nickname)
-                .role("ROLE_MEMBER")
+                .role("ROLE_USER")
                 .build();
 
         return userRepository.save(user);
@@ -248,6 +248,6 @@ public class UserService {
     public String findRoleByUserId(Long userId) {
         return userRepository.findById(userId)
                 .map(User::getRole)
-                .orElse("ROLE_MEMBER");
+                .orElse("ROLE_USER");
     }
 }
