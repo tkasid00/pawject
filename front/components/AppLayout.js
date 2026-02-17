@@ -189,23 +189,27 @@ export default function AppLayout({ children }) {
       </Drawer>
 
       {/* ✅ Content + 좌우 광고 영역 */}
-      <Content style={{ padding: "16px" }}>
-        <Row gutter={[16, 16]}>
-          {/* ✅ 왼쪽 광고 */}
-          <Col xs={24} md={6} lg={6}>
-            {renderAds()}
-          </Col>
+      <Content style={{ padding: "28px 16px" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <Row gutter={[16, 16]}>
+            
+            {/* 왼쪽 광고 */}
+            <Col xs={0} md={3} lg={3}>
+              {renderAds()}
+            </Col>
 
-          {/* ✅ 메인 콘텐츠 중앙 */}
-          <Col xs={24} md={12} lg={12}>
-            <div style={{ maxWidth: "100%" }}>{children}</div>
-          </Col>
+            {/* 중앙 본문 */}
+            <Col xs={24} md={18} lg={18}>
+              {children}
+            </Col>
 
-          {/* ✅ 오른쪽 광고 */}
-          <Col xs={24} md={6} lg={6}>
-            {renderAds()}
-          </Col>
-        </Row>
+            {/* 오른쪽 광고 */}
+            <Col xs={0} md={3} lg={3}>
+              {renderAds()}
+            </Col>
+
+          </Row>
+        </div>
       </Content>
     </Layout>
   );
