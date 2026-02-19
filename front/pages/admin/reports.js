@@ -26,10 +26,10 @@ export default function AdminReportPage() {
   } = useSelector((state) => state.adminReport ?? {}, shallowEqual);
 
   // 단일 조회 로직 (초기 + 타입 변경)
-  useEffect(() => {
-    dispatch(fetchReportsRequest({ type, page: 0, size }));
-  }, [dispatch, type, size]);
-
+ useEffect(() => {
+  console.log("dispatch fetchReportsRequest");
+  dispatch(fetchReportsRequest({ type, page: 0, size }));
+}, [dispatch, type, size]);
   const handleTypeChange = (value) => {
     setType(value === "ALL" ? null : value);
   };
