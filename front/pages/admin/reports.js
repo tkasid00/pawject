@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector, shallowEqual } from "react-redux";
 import { useRouter } from "next/router";
 import { Card, Space, Select, Spin } from "antd";
-import { parseJwt } from "../../utils/jwt";
 import BoardCard from "../../components/common/BoardCard";
 import BoardToggleTable from "../../components/common/BoardToggleTable";
 import AdminReportHandleModal from "../../components/admin/AdminReportHandleModal";
@@ -14,27 +13,9 @@ export default function AdminReportPage() {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const [loginRole, setLoginRole] = useState(null);
-  const [authChecked, setAuthChecked] = useState(false);
   const [type, setType] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedReportId, setSelectedReportId] = useState(null);
-
-  // 관리자 권한 확인 (초기 차단 방지)
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    const payload = token ? parseJwt(token) : null;
-    setLoginRole(payload?.role ?? null);
-    setAuthChecked(true);
-  }, []);
-
-  const canAdmin = loginRole === "ROLE_ADMIN";
-
-  // 권한 체크 후에만 리다이렉트
-  useEffect(() => {
-    if (!authChecked) return;
-    if (!canAdmin) router.replace("/user/login");
-  }, [authChecked, canAdmin, router]);
 
   const {
     reports = [],
@@ -44,11 +25,15 @@ export default function AdminReportPage() {
     loading = false,
   } = useSelector((state) => state.adminReport ?? {}, shallowEqual);
 
-  // 관리자일 때만 조회
+  // 최초 진입 시 무조건 조회 (인증 가드 제거)
   useEffect(() => {
-    if (!authChecked || !canAdmin) return;
+    dispatch(fetchReportsRequest({ type: null, page: 0, size }));
+  }, [dispatch, size]);
+
+  // 타입 변경 시 재조회
+  useEffect(() => {
     dispatch(fetchReportsRequest({ type, page: 0, size }));
-  }, [dispatch, canAdmin, authChecked, type, size]);
+  }, [dispatch, type, size]);
 
   const handleTypeChange = (value) => {
     setType(value === "ALL" ? null : value);
@@ -92,10 +77,6 @@ export default function AdminReportPage() {
       ),
     },
   ];
-
-  // 권한 확인 전에는 렌더 보류 (null 차단 문제 해결)
-  if (!authChecked) return null;
-  if (!canAdmin) return null;
 
   return (
     <BoardCard title="관리자 신고 관리" extra={<Space></Space>}>
