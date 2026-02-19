@@ -1,4 +1,4 @@
-name: Deploy Fullstack App  #워크풀로우 이름 정의-프로젝트 이름 교체
+name: Deploy Fullstack App  #워크풀로우 이름 정의-프로젝트 이름 교체   
 
 on:  # 실행 조건 정의
   push:  # push 이벤트 발생 시 실행
