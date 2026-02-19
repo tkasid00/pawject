@@ -15,7 +15,7 @@ export default function LoginPage() {
   };
 
   const handleSocialLogin = (provider) => {
-    window.location.href = `http://localhost:8484/oauth2/authorization/${provider}`;
+window.location.href = `http://13.236.66.10/oauth2/authorization/${provider}`;
   };
 
   return (
