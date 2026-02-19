@@ -25,12 +25,7 @@ export default function AdminReportPage() {
     loading = false,
   } = useSelector((state) => state.adminReport ?? {}, shallowEqual);
 
-  // 최초 진입 시 무조건 조회 (인증 가드 제거)
-  useEffect(() => {
-    dispatch(fetchReportsRequest({ type: null, page: 0, size }));
-  }, [dispatch, size]);
-
-  // 타입 변경 시 재조회
+  // 단일 조회 로직 (초기 + 타입 변경)
   useEffect(() => {
     dispatch(fetchReportsRequest({ type, page: 0, size }));
   }, [dispatch, type, size]);
