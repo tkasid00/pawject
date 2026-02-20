@@ -239,8 +239,8 @@ const handleWriteClick = () => {
               user={user}
               likes={likes}
               likesCount={likesCount}
-              retweetedPosts={retweets}
-              retweetsCount={retweetsCount}
+              retweetedPosts={{}} 
+              retweetsCount={{}}
               expandedPostId={expandedPostId}
               setExpandedPostId={setExpandedPostId}
               handleToggleLike={handleToggleLike}
