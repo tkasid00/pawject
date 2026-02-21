@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import api from "../../api/axios";
 import { Button, Card, List, Spin, message } from "antd";
 import { useRouter } from "next/router";
-
+import { fileUrl } from "../../utils/fileUrl";
 export default function MyPage() {
   const [user, setUser] = useState(null);
   const [pets, setPets] = useState([]);
@@ -50,7 +50,7 @@ export default function MyPage() {
           <>
           <div style={{ display: "flex", alignItems: "center", marginBottom: 10 }}>
             <img
-              src={`http://localhost:8484/uploads/${user.ufile || "default.png"}`}
+              src={fileUrl(user.ufile || "default.png")}
               alt={user.nickname}
               style={{ width: 80, height: 80, borderRadius: "50%", marginRight: 15 }}
             />

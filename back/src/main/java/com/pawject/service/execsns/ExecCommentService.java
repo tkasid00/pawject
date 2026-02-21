@@ -49,6 +49,7 @@ public class ExecCommentService {
         // 댓글 dto 
         return CommentResponseDto.builder()
                 .id(comment.getId())
+                .authorId(comment.getUser().getUserId())
                 .content(comment.getContent())
                 .authorNickname(comment.getUser().getNickname())
                 .createdAt(comment.getCreatedAt())
@@ -60,6 +61,7 @@ public class ExecCommentService {
         return commentRepository.findByPost_IdAndDeletedFalse(postId).stream()
                 .map(c -> CommentResponseDto.builder()
                         .id(c.getId())
+                        .authorId(c.getUser().getUserId())
                         .content(c.getContent())
                         .authorNickname(c.getUser().getNickname())
                         .createdAt(c.getCreatedAt())
@@ -83,6 +85,7 @@ public class ExecCommentService {
         // 댓글 dto 
         return CommentResponseDto.builder()
                 .id(comment.getId())
+                .authorId(comment.getUser().getUserId())
                 .content(comment.getContent())
                 .authorNickname(comment.getUser().getNickname())
                 .createdAt(comment.getCreatedAt())

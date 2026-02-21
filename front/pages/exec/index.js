@@ -197,7 +197,21 @@ const handleWriteClick = () => {
 
 
 
-      <Tabs defaultActiveKey="all" centered>
+      <Tabs
+            defaultActiveKey="all"
+            centered
+            onChange={(key) => {
+              if (!currentUserId) return;
+
+              if (key === "liked") {
+                dispatch(fetchLikedPostsRequest({ page: 1, size: 10 }));
+              }
+
+              if (key === "my") {
+                dispatch(fetchMyAndRetweetsRequest({ page: 1, size: 10 }));
+              }
+            }}
+          >
         <Tabs.TabPane tab="전체 글" key="all">
           <InfiniteScroll
             dataLength={posts.length}
