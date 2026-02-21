@@ -64,4 +64,4 @@ openai:
 naver:
   ocr:
     key: ${NAVER_OCR_KEY}
-    url: ${NAVER_OCR_URL}	
+    url: ${NAVER_OCR_URL}
